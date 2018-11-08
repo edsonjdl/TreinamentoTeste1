@@ -19,6 +19,17 @@
     </global-forwards>
 
     <action-mappings>
+        
+        <action path="/ListUsers" type="com.myapp.struts.user.ListUsers">
+            <forward name="success" path="/showUsers.jsp"/>
+        </action>
+        
+        <action path="/ListGroups" type="com.myapp.struts.group.ListGroups" >
+            <forward name="success" path="/showGroups.jsp"/>
+        </action>
+
+
+        
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     

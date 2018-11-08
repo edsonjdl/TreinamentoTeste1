@@ -23,5 +23,13 @@
         <h3><bean:message key="welcome.heading"/></h3>
         <p><bean:message key="welcome.message"/></p>
         
+        1. <html:link page="/ListUsers.do">Users list</html:link>
+                <br><br>
+        2. <html:link page="/ListGroups.do">Groups list</html:link>
+         <br><br>
+        3. <html:link page="/pages/saisieGroupe2.jsp">Add user to group</html:link>
+        
+
+        
     </body>
 </html:html>
