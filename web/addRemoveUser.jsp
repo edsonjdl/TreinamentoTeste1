@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +16,7 @@
     </head>
     <body>
         <h1>Add or Remove users from groups</h1>
-        <form name="addRemoveUserGroup" action="ConfirmGroup">
+        <html:form action="UpdateGroupAction.do">
 
 
             <table border="1">
@@ -26,43 +28,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        Select group:  
-                <select name="selectGroup">
-                    <option>1</option>
-                    <option>2</option>
-                </select>    
-                        <br><br>
-                    </tr>
-                    
+
+
                     <tr>
                         <td>      
+                            <html:select property="usersOutside"  >
+                                <c:forEach var="user1" items="${usersOut}">
+                                    <html:option value="${user1.userId}">${user1.login}</html:option>
+                                        <br>
+                                </c:forEach>
+                            </html:select>
 
-                            <select name="usersOutside" size="4" multiple cols="20">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
-                            </select>
 
                         </td>
                         <td>
-                            <input type="button" value="Add >>" name="addUser" /> <br><br>
-                            <input type="button" value="<< Remove" name="removeUser" />
+                            <html:button value="Add >>" property="addUser" /> <br><br>
+                            <html:button value="<< Remove" property="removeUser" />
                         </td>
                         <td>               
 
-                            <select name="usersInside" size="4" multiple cols="20">
-
-                            </select>
+                            <html:select property="usersInside" >
+                                <c:forEach var="user2" items="${usersIn}">
+                                    <html:option value="${user2.userId}">${user2.login}</html:option>
+                                        <br>
+                                </c:forEach>
+                            </html:select>
 
                         </td>
                     </tr>
                 </tbody>
             </table>
             <br><br>
-            <input type="submit" value="Confirm" name="confirmMod" />
+            <html:submit value="Confirm" />
 
-        </form>
+        </html:form>
     </body>
 </html>

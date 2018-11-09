@@ -5,12 +5,8 @@
  */
 package com.myapp.struts.group;
 
-import Utils.DAO;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Group;
-import model.User;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -19,7 +15,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author edson
  */
-public class GroupChoiceAction extends org.apache.struts.action.Action {
+public class UpdateGroupAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -38,19 +34,6 @@ public class GroupChoiceAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
-        System.out.println("GroupChoiceAction - servlet");
-        GroupChoice gc = (GroupChoice) form;
-        
-        
-        Group group = new Group();
-        DAO.openSession();
-        group = DAO.findGroupById(gc.getGroupId());
-        request.setAttribute("group", group);
-               
-        request.setAttribute("usersList", group.getUsers());
-        
-        //DAO.closeSession();
         
         return mapping.findForward(SUCCESS);
     }

@@ -83,26 +83,19 @@ public class DAO {
     // Users list
     public static void listUsers(ArrayList<User> usersList) {
 
-        //openSession();
-        
         List result = executeHQLQuery(completeUserList);
         User u;
         for (Object o : result) {
             u = (User) o;
             usersList.add(u);
 
-//            //Teste
-//            System.out.println(u.getNome());
         }
 
-        //closeSession();
     }
     
         // Groups list
     public static void listGroups(ArrayList<Group> groupsList) {
 
-        //openSession();
-        
         List result = executeHQLQuery(completeGroupList);
         Group g;
         for (Object o : result) {
@@ -113,13 +106,10 @@ public class DAO {
            System.out.println(g.getGroupName());
         }
 
-        //closeSession();
     }
     
     
         public static Group findGroupById(String groupId) {
-
-        //openSession();
         
         List result = executeHQLQuery(groupById + groupId);
         Group g;

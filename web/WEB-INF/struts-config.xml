@@ -7,6 +7,8 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="UpdateGroupActionForm" type="com.myapp.struts.group.UpdateGroupActionForm"/>
+        <form-bean name="AddRemoveUserForm" type="com.myapp.struts.group.AddRemoveUserForm"/>
         <form-bean name="GroupChoice" type="com.myapp.struts.group.GroupChoice"/><!-- Choisir groupe pour afficher des details -->
     
     </form-beans>
@@ -33,6 +35,12 @@
         <action path="/GroupChoiceAction" type="com.myapp.struts.group.GroupChoiceAction" input="/showGroups.jsp" name="GroupChoice" scope="request"  validate="false"> 
             <forward name="success" path="/showSingleGroup.jsp"/>
         </action>
+        
+        
+        <action input="/showSingleGroup.jsp" name="AddRemoveUserForm" path="/AddRemoveUserAction" scope="request" type="com.myapp.struts.group.AddRemoveUserAction" validate="false">
+            <forward name="success" path="/addRemoveUser.jsp"/>
+        </action>
+        <action input="/addRemoveUser.jsp" name="UpdateGroupActionForm" path="/UpdateGroupAction" scope="request" type="com.myapp.struts.group.UpdateGroupAction" validate="false"/>
 
 
         

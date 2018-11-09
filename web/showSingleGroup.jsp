@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,13 @@
 
             </tbody>
         </table>
+        
+        <br><br>
+        
+        <html:form action="AddRemoveUserAction.do">            
+            <html:hidden value="${group.groupId}" property="groupId" />
+            <html:submit value="Add/Remove users from ${group.groupName}" />
+        </html:form>
 
         
 

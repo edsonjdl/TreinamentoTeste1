@@ -7,6 +7,8 @@ package com.myapp.struts.group;
 
 import Utils.DAO;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Group;
@@ -19,7 +21,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author edson
  */
-public class GroupChoiceAction extends org.apache.struts.action.Action {
+public class AddRemoveUserAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -39,18 +41,56 @@ public class GroupChoiceAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        System.out.println("GroupChoiceAction - servlet");
-        GroupChoice gc = (GroupChoice) form;
-        
-        
+                System.out.println("AddRemoveUserAction - servlet");
+        AddRemoveUserForm arf = (AddRemoveUserForm) form; 
         Group group = new Group();
         DAO.openSession();
-        group = DAO.findGroupById(gc.getGroupId());
+        
+        group = DAO.findGroupById(arf.getGroupId());
         request.setAttribute("group", group);
                
-        request.setAttribute("usersList", group.getUsers());
+        HashSet<User> usersInside = new HashSet<User>();
+        //usersInside = group.getUsers();
+        
+        for(Object o : group.getUsers()){
+            usersInside.add((User)o);
+        }
+        
+   
+
+        DAO.getSession().flush();
+        //DAO.getSession().clear();
+        
+        ArrayList<User> usersList = new ArrayList<User>();
+        ArrayList<User> usersOutside = new ArrayList<User>();
+        DAO.listUsers(usersList);   
+        
+        
+        for(User u : usersList){
+            
+            String login = u.getLogin();
+            boolean check = true;
+            
+            for(User ui: usersInside){
+                
+                if(ui.getLogin().equals(login)){
+                    check = false;
+                }
+            }
+            
+            if(check){
+                usersOutside.add(u);
+            }
+            
+        }
+        
+        request.setAttribute("usersOut", usersOutside);        
+        request.setAttribute("usersIn", usersInside);
+
         
         //DAO.closeSession();
+        
+        
         
         return mapping.findForward(SUCCESS);
     }
