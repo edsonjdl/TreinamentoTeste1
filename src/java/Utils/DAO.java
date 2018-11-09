@@ -24,8 +24,9 @@ public class DAO {
     public static Session session;
     public static Transaction tx;
 
-    private static String completeUserList = "from User";
-    private static String completeGroupList = "from Group";
+    private static String completeUserList = " from User ";
+    private static String completeGroupList = " from Group ";
+    private static String groupById = " from Group where groupId = ";
 
     // Configuração do DAO
     public static Session getSession() {
@@ -113,6 +114,20 @@ public class DAO {
         }
 
         //closeSession();
+    }
+    
+    
+        public static Group findGroupById(String groupId) {
+
+        //openSession();
+        
+        List result = executeHQLQuery(groupById + groupId);
+        Group g;
+            g = (Group) result.get(0);
+
+           System.out.println(g.getGroupName());
+
+        return g;
     }
 
 

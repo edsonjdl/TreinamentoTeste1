@@ -27,7 +27,7 @@
                 <br><br>
         2. <html:link page="/ListGroups.do">Groups list</html:link>
          <br><br>
-        3. <html:link page="/pages/saisieGroupe2.jsp">Add user to group</html:link>
+        3. <html:link page="/addRemoveUser.jsp">Add user to group</html:link>
         
 
         

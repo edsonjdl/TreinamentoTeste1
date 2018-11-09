@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="GroupChoice" type="com.myapp.struts.group.GroupChoice"/><!-- Choisir groupe pour afficher des details -->
     
     </form-beans>
     
@@ -26,6 +27,11 @@
         
         <action path="/ListGroups" type="com.myapp.struts.group.ListGroups" >
             <forward name="success" path="/showGroups.jsp"/>
+        </action>
+        
+        <!--    -->
+        <action path="/GroupChoiceAction" type="com.myapp.struts.group.GroupChoiceAction" input="/showGroups.jsp" name="GroupChoice" scope="request"  validate="false"> 
+            <forward name="success" path="/showSingleGroup.jsp"/>
         </action>
 
 

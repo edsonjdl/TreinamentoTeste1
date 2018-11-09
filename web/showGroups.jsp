@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +14,24 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>List of groups</h1>
-        <c:forEach var="group" items="${groupsList}">
-            ${group.groupName} <br>
-        </c:forEach>
+        <h1>Group List</h1>
+
+
+        <html:form action="GroupChoiceAction.do" method="POST">
+
+                       
+            <html:select property="groupId">
+                <c:forEach var="group" items="${groupsList}">
+                    <html:option value="${group.groupId}">${group.groupName}</html:option>
+                </c:forEach>  
+            </html:select>
+
+
+
+            <br>
+            <html:submit value="Envoyer" />  
+        </html:form>
+
+
     </body>
 </html>
